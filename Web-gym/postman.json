@@ -1,0 +1,856 @@
+{
+	"info": {
+		"_postman_id": "5ce8d0d3-4211-483d-b312-1782f22118f7",
+		"name": "CSC309 PB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23938176"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/register/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json()\r",
+							"pm.environment.set(\"authToken\", res.access)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/login/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/accounts/logout/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "old_password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/change_password/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"change_password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/update_profile/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"update_profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Studio List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/list/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"list",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "coach",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "class",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "amenity",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Studio Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/detail/{{studio_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"detail",
+						"{{studio_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Class Schedules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/list/{{studio_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"list",
+						"{{studio_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enroll in All Class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/{{class_id}}/enroll/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"{{class_id}}",
+						"enroll",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enroll in One Class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/times/{{time_id}}/enroll/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"times",
+						"{{time_id}}",
+						"enroll",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Drop All Class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/{{class_id}}/drop/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"{{class_id}}",
+						"drop",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Drop One Class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/times/{{time_id}}/drop/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"times",
+						"{{time_id}}",
+						"drop",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Class Schedule",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/accounts/time/upcoming/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"time",
+						"upcoming",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Class History",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/accounts/time/history/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"time",
+						"history",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search/Filter class schedules (OR)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/times/filter/1/?name=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"times",
+						"filter",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "1"
+						},
+						{
+							"key": "coach",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "date_from",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "date_end",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search/Filter class (no schedules showing) (AND)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/studios/class/filter/1/?name=1&coach=&start_date&end_date&range_greater=4&range_smaller=",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"studios",
+						"class",
+						"filter",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "1"
+						},
+						{
+							"key": "coach",
+							"value": ""
+						},
+						{
+							"key": "start_date",
+							"value": null
+						},
+						{
+							"key": "end_date",
+							"value": null
+						},
+						{
+							"key": "range_greater",
+							"value": "4"
+						},
+						{
+							"key": "range_smaller",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subscription",
+							"value": "Mon",
+							"type": "text"
+						},
+						{
+							"key": "card_info",
+							"value": "34",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/add_subscription/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"add_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Card Info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_info",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/update_card_info/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"update_card_info",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subscription",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/update_subscription/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"update_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Subscription",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "confirm",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/cancel_subscription/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"cancel_subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment History",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/accounts/payment_history/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accounts",
+						"payment_history",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "studio_id",
+			"value": "1"
+		},
+		{
+			"key": "class_id",
+			"value": "1"
+		},
+		{
+			"key": "time_id",
+			"value": "10"
+		},
+		{
+			"key": "authToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY4Nzk0MzIxLCJpYXQiOjE2Njg3OTQwMjEsImp0aSI6IjdkNWJmMTg0MmQxNDQ1MjY5OThjODQ0N2I2NmM0Y2E4IiwidXNlcl9pZCI6Mn0.Pl2W_QPwcbb1RfLfI33AOWJApIkDTizC5m2GAgnSRRg"
+		}
+	]
+}
